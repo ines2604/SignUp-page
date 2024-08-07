@@ -16,3 +16,25 @@ function change() {
 }
 
 button.onclick = change;
+
+function afficherPassword(event) {
+    const button = event.currentTarget;
+    const container = button.parentElement; // Obtient le conteneur parent
+
+    // Obtient le champ de mot de passe dans le conteneur
+    const passwordField = container.querySelector('.input-field');
+
+    if (passwordField) {
+        const currentType = passwordField.getAttribute('type');
+        const newType = currentType === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', newType);
+    } else {
+        console.error('Champ de mot de passe non trouvé');
+    }
+}
+
+// Sélectionne tous les boutons pour basculer le mot de passe
+const buttons = document.querySelectorAll('.input-button');
+buttons.forEach(button => {
+    button.addEventListener('click', afficherPassword);
+});
